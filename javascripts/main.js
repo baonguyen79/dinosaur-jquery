@@ -1,0 +1,1 @@
+var myString = 'Callan wins all ${2 + 5}';
