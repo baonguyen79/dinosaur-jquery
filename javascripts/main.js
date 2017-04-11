@@ -1,1 +1,23 @@
-var myString = 'Callan wins all ${2 + 5}';
+var dinoArray = [];
+
+$.ajax('./db/dinosaurs.json').done(function(data){
+	dinoArray = data.dinosaurs;
+	makeDom(dinoArray);
+}).fail(function(error){
+	console.log("Error !", error);
+});
+
+function makeDom(myArrayToPrint){
+	var myDomString = "";
+	for (var i=0; i<myArrayToPrint.length; i++){
+		myDomString += `<div class="dinoCard">`;
+		myDomString += `<header><h1>${myArrayToPrint[i].type}</h1></header>`;
+		myDomString += `<section>`;
+		myDomString += `<img src="${myArrayToPrint[i].img}">`;
+		myDomString += `<p class="bio">${myArrayToPrint[i].bio}</p>`;
+		myDomString += `</section>`;
+		myDomString += `<footer>${myArrayToPrint[i].info}</footer>`;
+		myDomString += `</div>`;
+	}
+	$("#dinosaurs").append(myDomString);
+}
